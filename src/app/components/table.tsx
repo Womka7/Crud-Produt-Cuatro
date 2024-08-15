@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Image from 'next/image'; // Importa correctamente Image desde next/image
 import { Product } from '../models/table.model';
+import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button  } from "./styled-components";
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -24,43 +24,45 @@ export default function Table() {
     }, []);
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {products.map((product) => (
-                    <tr key={product.id}>
-                        <td>{product.id}</td>
-                        <td>{product.title}</td>
-                        <td>{product.description}</td>
-                        <td>{product.price}</td>
-                        <td>
-                            {/* Renderiza la imagen si existe */}
-                            {product.img && (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img
-                                    src={product.img}
-                                    alt={product.title}
-                                    width={100}
-                                    height={100}
-                                />
-                            )}
-                        </td>
-                        <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </td>
+        <TableContainer>
+            <TableElement>
+                <thead>
+                    <tr>
+                        <TableHeader>Id</TableHeader>
+                        <TableHeader>Title</TableHeader>
+                        <TableHeader>Description</TableHeader>
+                        <TableHeader>Price</TableHeader>
+                        <TableHeader>Image</TableHeader>
+                        <TableHeader>Actions</TableHeader>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {products.map((product) => (
+                        <TableRow key={product.id}>
+                            <TableCell>{product.id}</TableCell>
+                            <TableCell>{product.title}</TableCell>
+                            <TableCell>{product.description}</TableCell>
+                            <TableCell>{product.price}</TableCell>
+                            <TableCell>
+                                {/* Renderiza la imagen si existe */}
+                                {product.img && (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img
+                                        src={product.img}
+                                        alt={product.title}
+                                        width={100}
+                                        height={100}
+                                    />
+                                )}
+                            </TableCell>
+                            <TableCell>
+                                <Button>Edit</Button>
+                                <Button>Delete</Button>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </tbody>
+            </TableElement>
+        </TableContainer>
     );
 }
