@@ -5,6 +5,7 @@ import { IproductProps } from "../models/Iproduct";
 import Input from "./input";
 import TextArea from "./textArea";
 import Button from "./button";
+import { FormContainer } from "./styles/formStyles";
 
 const ProductForm: React.FC = () => {
     const [product, setProduct] = useState<IproductProps>({
@@ -78,7 +79,7 @@ const ProductForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <FormContainer onSubmit={handleSubmit}>
             <Input
                 label="Title"
                 type="text"
@@ -114,7 +115,7 @@ const ProductForm: React.FC = () => {
                 onClick={() => {}}
                 className="btn-submit"
             />
-        </form>
+        </FormContainer>
     );
 }
 
