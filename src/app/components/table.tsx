@@ -28,7 +28,6 @@ export default function Table() {
             <TableElement>
                 <thead>
                     <tr>
-                        <TableHeader>Id</TableHeader>
                         <TableHeader>Title</TableHeader>
                         <TableHeader>Description</TableHeader>
                         <TableHeader>Price</TableHeader>
@@ -39,16 +38,15 @@ export default function Table() {
                 <tbody>
                     {products.map((product) => (
                         <TableRow key={product.id}>
-                            <TableCell>{product.id}</TableCell>
                             <TableCell>{product.title}</TableCell>
                             <TableCell>{product.description}</TableCell>
                             <TableCell>{product.price}</TableCell>
                             <TableCell>
                                 {/* Renderiza la imagen si existe */}
-                                {product.img && (
+                                {product.image && (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img
-                                        src={product.img}
+                                        src={product.image}
                                         alt={product.title}
                                         width={100}
                                         height={100}
