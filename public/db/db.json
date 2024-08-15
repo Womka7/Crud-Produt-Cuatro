@@ -1,0 +1,22 @@
+{
+"products": [
+        {
+            "id": 1,
+            "title": "Product 1",
+            "description": "Description for Product 1",
+            "price": 10.99,
+            "img": "https://supermercadolaestacion.com/50711-large_default/arroz-diana-x1000gr.jpg"
+            
+        },
+        {
+            "id": 2,
+            "title": "Product 2",
+            "description": "Description for Product 2",
+            "price": 11.5,
+            "img": "https://superchisma.com/img/catalogo/2996020/0/grande.jpg"
+            
+        }
+
+    ]
+    
+}
