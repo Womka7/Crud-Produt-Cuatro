@@ -55,3 +55,8 @@ export const Button = styled.button`
     background-color: #c82333;
   }
 `;
+
+export const H1 = styled.h1`
+  display: flex;
+  justify-content: center;
+`

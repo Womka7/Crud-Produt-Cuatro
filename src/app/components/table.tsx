@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Product } from '../models/table.model';
-import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button  } from "./styled-components";
+import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button  } from "./styles/styled-components";
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);

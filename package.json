@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:next\" \"npm run dev:json\"",
     "dev:next": "next dev",
-    "dev:json": "json-server --watch src/app/db/db.json --port 3001",
+    "dev:json": "json-server --watch public/db/db.json --port 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
