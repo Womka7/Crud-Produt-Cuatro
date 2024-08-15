@@ -1,20 +1,46 @@
 {
-   "products": [
-        {
-            "id": 1,
-            "title": "Product 1",
-            "description": "Description for Product 1",
-            "price": 10.99
-            
-        },
-        {
-            "id": 2,
-            "title": "Product 2",
-            "description": "Description for Product 2",
-            "price": 11.5
-            
-        }
-
-    ]
-    
+  "products": [
+    {
+      "id": "1",
+      "title": "Product 1",
+      "description": "Description for Product 1",
+      "price": 10.99,
+      "imgUrl": "https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Product 2",
+      "description": "Description for Product 2",
+      "price": 11.5,
+      "imgUrl": "https://fotografiamejorparavendermas.com/wp-content/uploads/2017/06/La-importancia-de-la-imagen.jpg"
+    },
+    {
+      "id": "1723721320115",
+      "title": "gholgf",
+      "description": "gdg",
+      "price": 654644,
+      "image": "dggfg"
+    },
+    {
+      "id": "1723721880937",
+      "title": "dsff",
+      "description": "dfdf",
+      "price": 100,
+      "image": "https://fotografiamejorparavendermas.com/wp-content/uploads/2017/06/La-importancia-de-la-imagen.jpg"
+    },
+    {
+      "id": "1723726939628",
+      "title": "nuevo",
+      "description": "srgsdfg",
+      "price": 23424,
+      "image": "https://www.bing.com/ck/a?!&&p=18b8d5659a1e6f7dJmltdHM9MTcyMzA3NTIwMCZpZ3VpZD0yMzczODBiMy1kMWIxLTY4OTEtMjJlYy05NDY2ZDAxZTY5ZWYmaW5zaWQ9NTYwOA&ptn=3&ver=2&hsh=3&fclid=237380b3-d1b1-6891-22ec-9466d01e69ef&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWFnZW4lMjBwZXJybyZGT1JNPUlRRlJCQSZpZD04REI0RDYxMjExN0Q0MTREOEUxN0E5RUMxMDIxNTI4QjI4NjhBQjQ4&ntb=1"
+    },
+    {
+      "id": "1723727087234",
+      "title": "nuevo",
+      "description": "producto",
+      "price": 48,
+      "image": "https://www.bing.com/ck/a?!&&p=18b8d5659a1e6f7dJmltdHM9MTcyMzA3NTIwMCZpZ3VpZD0yMzczODBiMy1kMWIxLTY4OTEtMjJlYy05NDY2ZDAxZTY5ZWYmaW5zaWQ9NTYwOA&ptn=3&ver=2&hsh=3&fclid=237380b3-d1b1-6891-22ec-9466d01e69ef&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWFnZW4lMjBwZXJybyZGT1JNPUlRRlJCQSZpZD04REI0RDYxMjExN0Q0MTREOEUxN0E5RUMxMDIxNTI4QjI4NjhBQjQ4&ntb=1"
+    }
+  ]
 }
