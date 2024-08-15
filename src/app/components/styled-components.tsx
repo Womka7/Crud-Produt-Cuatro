@@ -1,18 +1,3 @@
-// import React from "react";
-// import styled, { css, keyframes, ThemeProvider, createGlobalStyle } from "styled-components";
-
-// export default function ComponentesEstilizados () {
-//     const myH3 = styled.h3`
-//         padding: 30px;
-//         text-align: center;
-//         background-color: #333;
-//     `;
-
-//     return(
-//         <myH3>Hola Coders</myH3>
-//     )
-// }
-
 import styled, { css, keyframes, ThemeProvider, createGlobalStyle } from 'styled-components';
 
 // Define los componentes estilizados usando styled-components
