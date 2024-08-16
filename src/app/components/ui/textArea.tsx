@@ -1,5 +1,5 @@
 import React from "react";
-import { ItextAreaProps } from "../models/ItextArea";
+import { ItextAreaProps } from "../../models/ItextArea";
 
 const TextArea: React.FC<ItextAreaProps> = ({ label, id, value, onChange}) => {
     return (

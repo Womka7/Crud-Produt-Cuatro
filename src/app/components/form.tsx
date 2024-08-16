@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import { IproductProps } from "../models/Iproduct";
-import Input from "./input";
-import TextArea from "./textArea";
-import Button from "./button";
+import Input from "./ui/input";
+import TextArea from "./ui/textArea";
+import Button from "./ui/button";
 import { FormContainer } from "./styles/formStyles";
 import { handleSubmit } from "../services/ProductController";
+import AlertMessage from "../utils/alert";
+import { useRouter } from "next/navigation";
 
 const initialState: IproductProps = {
     id: '',
@@ -18,7 +20,7 @@ const initialState: IproductProps = {
 
 const ProductForm: React.FC = () => {
     const [product, setProduct] = useState<IproductProps>(initialState);
-
+    const router = useRouter();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.currentTarget;
         setProduct({
@@ -26,6 +28,7 @@ const ProductForm: React.FC = () => {
             [id]: id === 'price' ? parseFloat(value) : value,
         });
     };
+
 
     return (
         <FormContainer onSubmit={(event) =>handleSubmit(event,product,setProduct,initialState)}>
