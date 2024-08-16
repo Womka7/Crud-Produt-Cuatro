@@ -54,6 +54,23 @@ export const handleSubmit = async (
     }
 };
 
+//*Función para mostrar productos */
+
+export const fetchData = async (
+    setProducts: React.Dispatch<React.SetStateAction<Product[]>>
+) => {
+    try {
+        const response = await fetch('db/db.json'); 
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data.products);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+
 //*Función para el formulario de eliminación */
 export const handleDelete = async (
     products: Product[],

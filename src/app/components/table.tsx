@@ -4,7 +4,7 @@ import { Product } from '../models/table.model';
 import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styles/styled-components';
 import Popup from './popup';
 import SimpleForm from './simpleForm';
-import { handleClosePopup, handleDelete, handleEditClick, handleSubmitEdit } from '../services/ProductController';
+import { fetchData, handleClosePopup, handleDelete, handleEditClick, handleSubmitEdit } from '../services/ProductController';
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -12,20 +12,7 @@ export default function Table() {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('db/db.json'); 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setProducts(data.products);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
+        fetchData(setProducts);
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
