@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Product } from '../models/table.model';
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBinFill } from "react-icons/ri";
 import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styles/styled-components';
 import Popup from './popup';
 import SimpleForm from './simpleForm';
@@ -54,8 +56,8 @@ export default function Table() {
                                     )}
                                 </TableCell>
                                 <TableCell>
-                                    <Button onClick={() => handleEditClick(product, setSelectedProduct, setIsPopupOpen)}>Edit</Button>
-                                    <Button onClick={() => handleDelete(products, setProducts, product, () => handleClosePopup(setIsPopupOpen, setSelectedProduct))}>Delete</Button>
+                                    <Button onClick={() => handleEditClick(product, setSelectedProduct, setIsPopupOpen)}><FaEdit /></Button>
+                                    <Button onClick={() => handleDelete(products, setProducts, product, () => handleClosePopup(setIsPopupOpen, setSelectedProduct))}><RiDeleteBinFill /></Button>
                                 </TableCell>
                             </TableRow>
                         ))}

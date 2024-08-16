@@ -12,7 +12,6 @@ function AlertMessage(message: string, type: 'success' | 'error') {
         icon: type,
         confirmButtonText: 'OK'
     });
-
 };
 
 async function AlertConfirm(message: string) {

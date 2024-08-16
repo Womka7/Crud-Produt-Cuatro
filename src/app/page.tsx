@@ -11,6 +11,5 @@ export default function Home() {
             <H1 >Welcome to our shop</H1>
             <Table />
       </div>
-    </main>
   );
 }
