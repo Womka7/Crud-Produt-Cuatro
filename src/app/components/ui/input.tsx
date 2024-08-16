@@ -1,5 +1,5 @@
 import React from "react";
-import { IinputProps } from "../models/Iinput";
+import { IinputProps } from "../../models/Iinput";
 
 const Input: React.FC<IinputProps> = ({  label, type, placeholder, id, value, onChange, className}) => {
     return (
