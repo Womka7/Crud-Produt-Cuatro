@@ -1,70 +1,82 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Product } from '../models/table.model';
-import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from "./styles/styled-components";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styles/styled-components';
+import Popup from './popup';
+import SimpleForm from './simpleForm';
+import { fetchData, handleClosePopup, handleDelete, handleEditClick, handleSubmitEdit } from '../services/ProductController';
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/db/db.json'); // Asegúrate de que la ruta sea correcta
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setProducts(data.products); // Accede correctamente a la propiedad 'products'
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
+        fetchData(setProducts);
     }, []);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.currentTarget;
+        setSelectedProduct({
+            ...selectedProduct!,
+            [id]: id === 'price' ? parseFloat(value) : value,
+        });
+    };
+
     return (
-        <TableElement>
-            <thead>
-                <tr>
-                    <TableHeader>Title</TableHeader>
-                    <TableHeader>Description</TableHeader>
-                    <TableHeader>Price</TableHeader>
-                    <TableHeader>Image</TableHeader>
-                    <TableHeader>Actions</TableHeader>
-                </tr>
-            </thead>
-            <tbody>
-                {products.map((product) => (
-                    <TableRow key={product.id}>
-                        <TableCell>{product.title}</TableCell>
-                        <TableCell>{product.description}</TableCell>
-                        <TableCell>{product.price}</TableCell>
-                        <TableCell>
-                            {/* Renderiza la imagen si existe */}
-                            {product.image && (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img
-                                    src={product.image}
-                                    alt={product.title}
-                                    width={100}
-                                    height={100}
-                                />
-                            )}
-                        </TableCell>
-                        <TableCell>
-                            <Button>
-                                <FaEdit />
-                            </Button>
-                            <Button>
-                                <RiDeleteBinFill />
-                            </Button>
-                        </TableCell>
-                    </TableRow>
-                ))}
-            </tbody>
-        </TableElement>
+        <>
+            <TableContainer>
+                <TableElement>
+                    <thead>
+                        <tr>
+                            <TableHeader>Title</TableHeader>
+                            <TableHeader>Description</TableHeader>
+                            <TableHeader>Price</TableHeader>
+                            <TableHeader>Image</TableHeader>
+                            <TableHeader>Actions</TableHeader>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((product) => (
+                            <TableRow key={product.id}>
+                                <TableCell>{product.title}</TableCell>
+                                <TableCell>{product.description}</TableCell>
+                                <TableCell>{product.price}</TableCell>
+                                <TableCell>
+                                    {product.image && (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img
+                                            src={product.image}
+                                            alt={product.title}
+                                            width={100}
+                                            height={100}
+                                        />
+                                    )}
+                                </TableCell>
+                                <TableCell>
+                                    <Button onClick={() => handleEditClick(product, setSelectedProduct, setIsPopupOpen)}><FaEdit /></Button>
+                                    <Button onClick={() => handleDelete(products, setProducts, product, () => handleClosePopup(setIsPopupOpen, setSelectedProduct))}><RiDeleteBinFill /></Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </tbody>
+                </TableElement>
+            </TableContainer>
+
+            {selectedProduct && (
+                <Popup isOpen={isPopupOpen} onClose={() => handleClosePopup(setIsPopupOpen, setSelectedProduct)}>
+                    <SimpleForm
+                        onSubmit={(e) => handleSubmitEdit(e, products, setProducts, selectedProduct, () => handleClosePopup(setIsPopupOpen, setSelectedProduct))}
+                        handleChange={handleChange}
+                        title={selectedProduct.title}
+                        description={selectedProduct.description}
+                        price={selectedProduct.price}
+                        image={selectedProduct.image}
+                    />
+                </Popup>
+            )}
+        </>
     );
 }
