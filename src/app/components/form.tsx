@@ -2,12 +2,16 @@
 
 import React, { useState } from "react";
 import { IproductProps } from "../models/Iproduct";
-import Input from "./input";
-import TextArea from "./textArea";
-import Button from "./button";
+import Input from "./ui/input";
+import TextArea from "./ui/textArea";
+import Button from "./ui/button";
 import { FormContainer } from "./styles/formStyles";
+import AlertMessage from "../utils/alert";
+import { useRouter } from "next/navigation";
 
 const ProductForm: React.FC = () => {
+    const router = useRouter();
+
     const [product, setProduct] = useState<IproductProps>({
         id: '',
         title: '',
@@ -59,6 +63,7 @@ const ProductForm: React.FC = () => {
             });
             console.log(response.ok)
             if (response.ok) {
+                await AlertMessage('Product created successfully', 'success')
                 const result = await response.json();
                 console.log("Producto agregado al servidor:", result);
 
@@ -70,10 +75,13 @@ const ProductForm: React.FC = () => {
                     price: 0,
                     image: ''
                 });
+
+                router.push("/")
             } else {
                 console.error("Error al agregar el producto al servidor:", response.statusText);
             }
         } catch (error) {
+            await AlertMessage('Something went wrong', 'error')
             console.error("Error en la petición o localStorage:", error);
         }
     };
