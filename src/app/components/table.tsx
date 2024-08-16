@@ -4,6 +4,7 @@ import { Product } from '../models/table.model';
 import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styles/styled-components';
 import Popup from './popup';
 import SimpleForm from './simpleForm';
+import { AlertConfirm, AlertMessage } from '../utils/alert';
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -49,27 +50,39 @@ export default function Table() {
         e.preventDefault();
         if (selectedProduct) {
             try {
-                const response = await fetch(`http://localhost:3001/products/${selectedProduct.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(selectedProduct),
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                // Mostrar el alerta de confirmación
+                const result = await AlertConfirm('Are you sure you want to update this product?');
+    
+                // Verificar si el usuario confirmó la acción
+                if (result.isConfirmed) {
+                    const response = await fetch(`http://localhost:3001/products/${selectedProduct.id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(selectedProduct),
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    
+                    await AlertMessage('Successfully updated product', 'success');
+                    const updatedProduct = await response.json();
+                    setProducts(products.map(product =>
+                        product.id === updatedProduct.id ? updatedProduct : product
+                    ));
+                    handleClosePopup();
+                    window.location.reload(); // Recarga la página después de guardar
                 }
-                const updatedProduct = await response.json();
-                setProducts(products.map(product =>
-                    product.id === updatedProduct.id ? updatedProduct : product
-                ));
-                handleClosePopup();
-                window.location.reload(); // Cierra el popup después de guardar
             } catch (error) {
                 console.error('Error updating product:', error);
+                await AlertConfirm('Error updating product'); // Mostrar un alerta de error si falla
             }
         }
     };
+    
+    
 
     return (
         <>
