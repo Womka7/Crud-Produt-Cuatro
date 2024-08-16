@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '../models/table.model';
 import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styles/styled-components';
 import Popup from './popup';
-import SimpleForm from './simpleFrom';
+import SimpleForm from './simpleForm';
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
