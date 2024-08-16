@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import Input from './input';
-import TextArea from './textArea';
-import Button from './button';
+import Input from './ui/input';
+import TextArea from './ui/textArea';
+import Button from './ui/button';
 import { FormContainer } from './styles/formStyles';
 import { IformProps } from '../models/Iform';
 
