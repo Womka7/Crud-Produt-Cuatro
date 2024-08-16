@@ -39,28 +39,34 @@ export default function Table() {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product) => (
-                            <TableRow key={product.id}>
-                                <TableCell>{product.title}</TableCell>
-                                <TableCell>{product.description}</TableCell>
-                                <TableCell>{product.price}</TableCell>
-                                <TableCell>
-                                    {product.image && (
-                                        // eslint-disable-next-line @next/next/no-img-element
-                                        <img
-                                            src={product.image}
-                                            alt={product.title}
-                                            width={100}
-                                            height={100}
-                                        />
-                                    )}
-                                </TableCell>
-                                <TableCell>
-                                    <Button onClick={() => handleEditClick(product, setSelectedProduct, setIsPopupOpen)}><FaEdit /></Button>
-                                    <Button onClick={() => handleDelete(products, setProducts, product, () => handleClosePopup(setIsPopupOpen, setSelectedProduct))}><RiDeleteBinFill /></Button>
-                                </TableCell>
+                        {products.length > 0 ? (
+                            products.map((product) => (
+                                <TableRow key={product.id}>
+                                    <TableCell>{product.title}</TableCell>
+                                    <TableCell>{product.description}</TableCell>
+                                    <TableCell>{product.price}</TableCell>
+                                    <TableCell>
+                                        {product.image && (
+                                            // eslint-disable-next-line @next/next/no-img-element
+                                            <img
+                                                src={product.image}
+                                                alt={product.title}
+                                                width={100}
+                                                height={100}
+                                            />
+                                        )}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button onClick={() => handleEditClick(product, setSelectedProduct, setIsPopupOpen)}><FaEdit /></Button>
+                                        <Button onClick={() => handleDelete(products, setProducts, product, () => handleClosePopup(setIsPopupOpen, setSelectedProduct))}><RiDeleteBinFill /></Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={5}>No products available</TableCell>
                             </TableRow>
-                        ))}
+                        )}
                     </tbody>
                 </TableElement>
             </TableContainer>
