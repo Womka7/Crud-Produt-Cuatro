@@ -7,7 +7,6 @@ import TextArea from "./ui/textArea";
 import Button from "./ui/button";
 import { FormContainer } from "./styles/formStyles";
 import { handleSubmit } from "../services/ProductController";
-import AlertMessage from "../utils/alert";
 import { useRouter } from "next/navigation";
 
 const initialState: IproductProps = {
@@ -31,7 +30,7 @@ const ProductForm: React.FC = () => {
 
 
     return (
-        <FormContainer onSubmit={(event) =>handleSubmit(event,product,setProduct,initialState)}>
+        <FormContainer onSubmit={(event) =>handleSubmit(event,product,setProduct,initialState,router)}>
             <Input
                 label="Title"
                 type="text"

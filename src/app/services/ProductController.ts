@@ -6,11 +6,14 @@ export const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     product:IproductProps,
     setProduct:React.Dispatch<React.SetStateAction<IproductProps>>,
-    initialState:IproductProps 
+    initialState:IproductProps,
+    router: any 
     ) => {
     e.preventDefault();
 
     // Crea el nuevo producto con un ID único
+    
+
     const newProduct = {
         ...product,
         id: Date.now().toString(), 
@@ -42,14 +45,17 @@ export const handleSubmit = async (
         });
         console.log(response.ok)
         if (response.ok) {
+            await AlertMessage("Product added successfully", "success");
             const result = await response.json();
             console.log("Product added:", result);
 
             setProduct(initialState);
+            router.push('/');
         } else {
             console.error("Error adding the product:", response.statusText);
         }
     } catch (error) {
+        await AlertMessage("Error adding the product", "error");
         console.error("Error in the request:", error);
     }
 };
