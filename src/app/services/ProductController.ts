@@ -47,6 +47,7 @@ export const handleSubmit = async (
         if (response.ok) {
             const result = await response.json();
             console.log("Product added:", result);
+            await AlertMessage("The product has been added successfully", 'success')
 
             const alertresult = await AlertNewProduct("Do you want to add other product?");
         if (alertresult.isDismissed) {
