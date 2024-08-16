@@ -1,22 +1,22 @@
 import { IproductProps } from "../models/Iproduct";
 import { Product } from "../models/table.model";
-import { AlertConfirm, AlertMessage } from "../utils/alert";
+import { AlertConfirm, AlertMessage, AlertNewProduct } from "../utils/alert";
 
 export const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
-    product:IproductProps,
-    setProduct:React.Dispatch<React.SetStateAction<IproductProps>>,
-    initialState:IproductProps,
-    router: any 
-    ) => {
+    product: IproductProps,
+    setProduct: React.Dispatch<React.SetStateAction<IproductProps>>,
+    initialState: IproductProps,
+    router: any
+) => {
     e.preventDefault();
 
     // Crea el nuevo producto con un ID único
-    
+
 
     const newProduct = {
         ...product,
-        id: Date.now().toString(), 
+        id: Date.now().toString(),
     };
 
     console.log(newProduct);
@@ -45,15 +45,20 @@ export const handleSubmit = async (
         });
         console.log(response.ok)
         if (response.ok) {
-            await AlertMessage("Product added successfully", "success");
             const result = await response.json();
             console.log("Product added:", result);
 
+            const alertresult = await AlertNewProduct("Do you want to add other product?");
+        if (alertresult.isDismissed) {
+            router.push("/")
+        }
+
             setProduct(initialState);
-            router.push('/');
+
         } else {
             console.error("Error adding the product:", response.statusText);
         }
+        
     } catch (error) {
         await AlertMessage("Error adding the product", "error");
         console.error("Error in the request:", error);
@@ -66,7 +71,7 @@ export const fetchData = async (
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>
 ) => {
     try {
-        const response = await fetch('db/db.json'); 
+        const response = await fetch('db/db.json');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -98,7 +103,7 @@ export const handleDelete = async (
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                
+
                 await AlertMessage('Successfully deleted product', 'success');
                 setProducts(products.filter(product => product.id !== selectedProduct.id));
                 handleClosePopup();
@@ -157,7 +162,7 @@ export const handleSubmitEdit = async (
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                
+
                 await AlertMessage('Successfully updated product', 'success');
                 const updatedProduct = await response.json();
                 setProducts(products.map(product =>

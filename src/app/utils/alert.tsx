@@ -26,4 +26,15 @@ async function AlertConfirm(message: string) {
     });
 }
 
-export { AlertMessage, AlertConfirm };
+async function AlertNewProduct (message: string) {
+    return MySwal.fire({
+        title: "¿New product?",
+        text: message,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: 'Yes, proceed!',
+    });
+}
+export { AlertMessage, AlertConfirm, AlertNewProduct };
