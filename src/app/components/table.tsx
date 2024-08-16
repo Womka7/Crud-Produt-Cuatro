@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Product } from '../models/table.model';
-import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button  } from "./styles/styled-components";
+import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from "./styles/styled-components";
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBinFill } from "react-icons/ri";
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -24,43 +26,45 @@ export default function Table() {
     }, []);
 
     return (
-        <TableContainer>
-            <TableElement>
-                <thead>
-                    <tr>
-                        <TableHeader>Title</TableHeader>
-                        <TableHeader>Description</TableHeader>
-                        <TableHeader>Price</TableHeader>
-                        <TableHeader>Image</TableHeader>
-                        <TableHeader>Actions</TableHeader>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product) => (
-                        <TableRow key={product.id}>
-                            <TableCell>{product.title}</TableCell>
-                            <TableCell>{product.description}</TableCell>
-                            <TableCell>{product.price}</TableCell>
-                            <TableCell>
-                                {/* Renderiza la imagen si existe */}
-                                {product.image && (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img
-                                        src={product.image}
-                                        alt={product.title}
-                                        width={100}
-                                        height={100}
-                                    />
-                                )}
-                            </TableCell>
-                            <TableCell>
-                                <Button>Edit</Button>
-                                <Button>Delete</Button>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </tbody>
-            </TableElement>
-        </TableContainer>
+        <TableElement>
+            <thead>
+                <tr>
+                    <TableHeader>Title</TableHeader>
+                    <TableHeader>Description</TableHeader>
+                    <TableHeader>Price</TableHeader>
+                    <TableHeader>Image</TableHeader>
+                    <TableHeader>Actions</TableHeader>
+                </tr>
+            </thead>
+            <tbody>
+                {products.map((product) => (
+                    <TableRow key={product.id}>
+                        <TableCell>{product.title}</TableCell>
+                        <TableCell>{product.description}</TableCell>
+                        <TableCell>{product.price}</TableCell>
+                        <TableCell>
+                            {/* Renderiza la imagen si existe */}
+                            {product.image && (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                    src={product.image}
+                                    alt={product.title}
+                                    width={100}
+                                    height={100}
+                                />
+                            )}
+                        </TableCell>
+                        <TableCell>
+                            <Button>
+                                <FaEdit />
+                            </Button>
+                            <Button>
+                                <RiDeleteBinFill />
+                            </Button>
+                        </TableCell>
+                    </TableRow>
+                ))}
+            </tbody>
+        </TableElement>
     );
 }

@@ -2,7 +2,6 @@ import styled, { css, keyframes, ThemeProvider, createGlobalStyle } from 'styled
 
 // Define los componentes estilizados usando styled-components
 export const TableContainer = styled.div`
-  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 `;
@@ -60,3 +59,4 @@ export const H1 = styled.h1`
   display: flex;
   justify-content: center;
 `
+

@@ -12,3 +12,4 @@ export default function AlertMessage(message: string, type: 'success' | 'error')
         confirmButtonText: 'OK'
     });
 }
+
