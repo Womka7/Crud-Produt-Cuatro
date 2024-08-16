@@ -5,12 +5,14 @@ import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
 
+
 function AlertMessage(message: string, type: 'success' | 'error') {
     return MySwal.fire({
         title: <i>{message}</i>,
         icon: type,
         confirmButtonText: 'OK'
     });
+
 };
 
 async function AlertConfirm(message: string) {
