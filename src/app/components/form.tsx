@@ -6,20 +6,21 @@ import Input from "./ui/input";
 import TextArea from "./ui/textArea";
 import Button from "./ui/button";
 import { FormContainer } from "./styles/formStyles";
+import { handleSubmit } from "../services/ProductController";
 import AlertMessage from "../utils/alert";
 import { useRouter } from "next/navigation";
 
+const initialState: IproductProps = {
+    id: '',
+    title: '',
+    description: '',
+    price: 0,
+    image: ''
+}
+
 const ProductForm: React.FC = () => {
+    const [product, setProduct] = useState<IproductProps>(initialState);
     const router = useRouter();
-
-    const [product, setProduct] = useState<IproductProps>({
-        id: '',
-        title: '',
-        description: '',
-        price: 0,
-        image: ''
-    });
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.currentTarget;
         setProduct({
@@ -28,66 +29,9 @@ const ProductForm: React.FC = () => {
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        // Crear el nuevo producto con un ID único (basado en la hora actual)
-        const newProduct = {
-            ...product,
-            id: Date.now().toString(), // Genera un ID basado en el tiempo actual
-        };
-
-        console.log(newProduct);
-
-        // Almacenar el producto en localStorage
-        try {
-            const storedData = localStorage.getItem('products');
-            let products = storedData ? JSON.parse(storedData).products : [];
-
-            // Agregar el nuevo producto al array de productos
-            products = [...products, newProduct];
-            console.log(product);
-
-            // Guardar los productos actualizados en localStorage
-            localStorage.setItem('products', JSON.stringify({ products }));
-
-            console.log("Producto guardado en localStorage:", newProduct);
-
-            // Realizar la petición POST al servidor para agregar el nuevo producto
-            const response = await fetch("http://localhost:3001/products", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newProduct)
-            });
-            console.log(response.ok)
-            if (response.ok) {
-                await AlertMessage('Product created successfully', 'success')
-                const result = await response.json();
-                console.log("Producto agregado al servidor:", result);
-
-                // También puedes resetear el estado del producto si es necesario
-                setProduct({
-                    id: '',
-                    title: '',
-                    description: '',
-                    price: 0,
-                    image: ''
-                });
-
-                router.push("/")
-            } else {
-                console.error("Error al agregar el producto al servidor:", response.statusText);
-            }
-        } catch (error) {
-            await AlertMessage('Something went wrong', 'error')
-            console.error("Error en la petición o localStorage:", error);
-        }
-    };
 
     return (
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer onSubmit={(event) =>handleSubmit(event,product,setProduct,initialState)}>
             <Input
                 label="Title"
                 type="text"
