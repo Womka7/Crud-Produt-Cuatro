@@ -40,7 +40,7 @@ export default function Table() {
                     </thead>
                     <tbody>
                         {products.length > 0 ? (
-                            products.map((product) => (
+                            products.slice().reverse().map((product) => (
                                 <TableRow key={product.id}>
                                     <TableCell>{product.title}</TableCell>
                                     <TableCell>{product.description}</TableCell>
