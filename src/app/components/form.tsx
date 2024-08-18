@@ -35,6 +35,7 @@ const ProductForm: React.FC = () => {
                 label="Title"
                 type="text"
                 placeholder="Enter product title"
+                required={true}
                 id="title"
                 value={product.title}
                 onChange={handleChange}
@@ -42,6 +43,7 @@ const ProductForm: React.FC = () => {
             <TextArea
                 label="Description"
                 id="description"
+                required=""
                 value={product.description}
                 onChange={handleChange}
             />
@@ -49,13 +51,15 @@ const ProductForm: React.FC = () => {
                 label="Price"
                 type="number"
                 placeholder="Enter product price"
+                required={true}
                 id="price"
-                value={product.price.toString()}
+                value={product.price ? product.price.toString() : ''}
                 onChange={handleChange}
             />
             <Input
                 label="Image URL"
                 type="url"
+                required={true} 
                 placeholder="Enter image URL"
                 id="image"
                 value={product.image}

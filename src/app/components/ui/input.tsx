@@ -1,7 +1,7 @@
 import React from "react";
 import { IinputProps } from "../../models/Iinput";
 
-const Input: React.FC<IinputProps> = ({  label, type, placeholder, id, value, onChange, className}) => {
+const Input: React.FC<IinputProps> = ({  label, type, placeholder, required, id, value, onChange, className}) => {
     return (
         <div className={className}>
             {label && <label>{label}</label>}
@@ -12,6 +12,7 @@ const Input: React.FC<IinputProps> = ({  label, type, placeholder, id, value, on
                 value={value} 
                 onChange={onChange} 
                 className="input-class"
+                {...(required && { required })}  // Añadir required solo si es true
             />
         </div>
     );
