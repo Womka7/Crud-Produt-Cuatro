@@ -106,9 +106,10 @@ export const handleDelete = async (
                 }
 
                 await AlertMessage('Successfully deleted product', 'success');
+
                 setProducts(products.filter(product => product.id !== selectedProduct.id));
                 handleClosePopup();
-                window.location.reload(); // Recarga la página aquí de borrar   
+                // window.location.reload(); // Recarga la página aquí de borrar   
             }
         } catch (error) {
             console.error('Error deleting product:', error);
@@ -170,7 +171,7 @@ export const handleSubmitEdit = async (
                     product.id === updatedProduct.id ? updatedProduct : product
                 ));
                 handleClosePopup();
-                window.location.reload(); // Recarga la página después de guardar
+                // window.location.reload(); // Recarga la página después de guardar
             }
         } catch (error) {
             console.error('Error updating product:', error);
