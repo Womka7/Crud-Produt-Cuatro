@@ -1,7 +1,7 @@
 // components/Popup.tsx
 import React from 'react';
-import { PopupProps } from '../models/Ipopup';
-import { CloseButton, Overlay, PopupContainer } from './styles/popupStyles';
+import { PopupProps } from '../../types/Ipopup';
+import { CloseButton, Overlay, PopupContainer } from './popupStyles';
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
     return (

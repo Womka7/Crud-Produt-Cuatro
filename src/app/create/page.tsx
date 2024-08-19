@@ -1,4 +1,4 @@
-import ProductForm from '../components/form';
+import ProductForm from '../components/form/form';
 export default function Create (){
     return(
         <div>

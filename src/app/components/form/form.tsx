@@ -1,12 +1,12 @@
 'use client'
 
 import React, { useState } from "react";
-import { IproductProps } from "../models/Iproduct";
-import Input from "./ui/input";
-import TextArea from "./ui/textArea";
-import Button from "./ui/button";
-import { FormContainer } from "./styles/formStyles";
-import { handleSubmit } from "../services/ProductController";
+import { IproductProps } from "../../types/Iproduct";
+import Input from "../ui/input";
+import TextArea from "../ui/textArea";
+import Button from "../ui/button";
+import { FormContainer } from "./formStyles";
+import { handleSubmit } from "../../services/ProductServices";
 import { useRouter } from "next/navigation";
 
 const initialState: IproductProps = {
