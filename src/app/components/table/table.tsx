@@ -45,7 +45,7 @@ export default function Table() {
                                 <TableRow key={product.id}>
                                     <TableCell>{product.title}</TableCell>
                                     <TableCell>{product.description}</TableCell>
-                                    <TableCell>{product.price}</TableCell>
+                                    <TableCell>$ {product.price}</TableCell>
                                     <TableCell>
                                         {product.image && (
                                             // eslint-disable-next-line @next/next/no-img-element
