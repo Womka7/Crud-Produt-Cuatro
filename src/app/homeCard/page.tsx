@@ -5,6 +5,7 @@ import { Product } from '../types/table.model';
 import { CardGridContainer } from './cardGridStyles';
 import Card from '../components/card/card';
 import NoProductsAvailable from '../components/notFound/notFound';
+import { AlertMessage } from '../utils/alert';
 
 export default function HomeCard() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -14,7 +15,7 @@ export default function HomeCard() {
     }, []);
 
     const handleAddToCart = (product: Product) => {
-        alert(`Product added to cart: ${product.title}`);
+        AlertMessage( `Product added to cart: ${product.title}`, "success")
     };
 
     return (
