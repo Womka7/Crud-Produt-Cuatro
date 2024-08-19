@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Product } from '../models/table.model';
+import { Product } from '../../types/table.model';
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
-import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styles/styled-components';
-import Popup from './popup';
-import SimpleForm from './simpleForm';
-import { fetchData, handleClosePopup, handleDelete, handleEditClick, handleSubmitEdit } from '../services/ProductController';
+import { TableContainer, TableElement, TableHeader, TableCell, TableRow, Button } from './styled-components';
+import Popup from '../popup/popup';
+import SimpleForm from '../ui/simpleForm';
+import { fetchData, handleClosePopup, handleDelete, handleEditClick, handleSubmitEdit } from '../../services/ProductServices';
+import NoProductsAvailable from '../notFound/notFound';
 
 export default function Table() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -64,7 +65,7 @@ export default function Table() {
                             ))
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={5}>No products available</TableCell>
+                                <TableCell colSpan={5}><NoProductsAvailable/></TableCell>
                             </TableRow>
                         )}
                     </tbody>

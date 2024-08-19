@@ -1,4 +1,4 @@
-import styled, { css, keyframes, ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 // Define los componentes estilizados usando styled-components
 export const TableContainer = styled.div`

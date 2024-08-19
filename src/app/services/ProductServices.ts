@@ -1,5 +1,5 @@
-import { IproductProps } from "../models/Iproduct";
-import { Product } from "../models/table.model";
+import { IproductProps } from "../types/Iproduct";
+import { Product } from "../types/table.model";
 import { AlertConfirm, AlertMessage, AlertNewProduct } from "../utils/alert";
 
 export const handleSubmit = async (

@@ -1,5 +1,5 @@
 'use client'
-import { NavBarContainer, NavLink, NavItems, Logo } from './styles/navbarStyles';
+import { NavBarContainer, NavLink, NavItems, Logo } from './navbarStyles';
 
 export default function NavBar() {
     return (
@@ -7,7 +7,8 @@ export default function NavBar() {
             <Logo>E-comercer</Logo>
             <NavItems>
                 <NavLink href="/create">Create</NavLink>
-                <NavLink href="/">Read-home</NavLink>
+                <NavLink href="/">HomeAdmin</NavLink>
+                <NavLink href="/homeCard">HomeCards</NavLink>
             </NavItems>
         </NavBarContainer>
     );

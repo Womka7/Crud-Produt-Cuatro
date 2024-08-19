@@ -1,10 +1,10 @@
 'use client'
 import Image from "next/image";
-import Table from "./components/table";
-import { H1 } from "./components/styles/styled-components";
+import Table from "./components/table/table";
+import { H1 } from "./components/table/styled-components";
 
 
-export default function Home() {
+export default function AdminTable() {
   return (
     <main>
       <div>
