@@ -43,7 +43,7 @@ const ProductForm: React.FC = () => {
             <TextArea
                 label="Description"
                 id="description"
-                required=""
+                required={true}
                 value={product.description}
                 onChange={handleChange}
             />

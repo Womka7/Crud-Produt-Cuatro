@@ -7,8 +7,8 @@ const TextArea: React.FC<ItextAreaProps> = ({ label, id, required, value, onChan
             <label htmlFor={id}>{label}</label>
             <textarea id={id} 
                 value={value} 
-                required
-                onChange={onChange} 
+                onChange={onChange}
+                {...(required && { required })}  // Añadir required solo si es true 
             />
         </div>
     );

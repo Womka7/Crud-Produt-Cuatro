@@ -1,7 +1,7 @@
 export interface ItextAreaProps{
     label: string;
     id: string;
-    required: string;
+    required?: boolean;
     value: string;
     onChange: (event:React.ChangeEvent<HTMLTextAreaElement>) => void;
 
