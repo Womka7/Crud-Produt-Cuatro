@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({ product, onAddToCart }) => {
             <CardContent>
                 <CardTitle>{product.title}</CardTitle>
                 <CardImage src={product.image} alt={product.title} />
-                <CardPrice>${product.price}</CardPrice>
+                <CardPrice>$ {product.price}</CardPrice>
                 <AddToCartButton onClick={() => onAddToCart(product)}>Add to Cart</AddToCartButton>
             </CardContent>
         </CardContainer>

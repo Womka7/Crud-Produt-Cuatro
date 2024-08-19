@@ -15,7 +15,9 @@ export default function HomeCard() {
     }, []);
 
     const handleAddToCart = (product: Product) => {
-        AlertMessage(`Product added to cart: ${product.title}`, 'success' )
+
+        AlertMessage( `Product added to cart: ${product.title}`, "success")
+
     };
 
     return (
